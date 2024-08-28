@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ericsson.nms</groupId>
+        <artifactId>integration</artifactId>
+        <version>15.2.0.40</version>
+    </parent>
+    <groupId>com.ericsson.oss.itpf.elasticsearch</groupId>
+    <artifactId>elasticsearch-module</artifactId>
+    <version>1.5.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <url>http://www.ericsson.com</url>
+    <organization>
+        <name>Ericsson</name>
+    </organization>
+
+    <prerequisites>
+        <maven>3.0.3</maven>
+    </prerequisites>
+
+    <name>[${project.artifactId}] JEE8 Project</name>
+
+    <properties>
+        <version.weld>1.1.13.Final</version.weld>
+        <version.ejb>3.1</version.ejb>
+        <version.jee>8</version.jee>
+        <version.mockito>1.9.5</version.mockito>
+
+        <version.maven.surefire>3.0.0-M3</version.maven.surefire>
+        <version.elasticsearch>6.8.4</version.elasticsearch>
+        <version.rank.eval.client>6.8.4</version.rank.eval.client>
+        <version.apache.httpcore>4.4.14</version.apache.httpcore>
+        <version.apache.httpclient>4.5.13</version.apache.httpclient>
+        <version.apache.httpasyncclient>4.1.4</version.apache.httpasyncclient>
+        <version.lucene>7.7.2</version.lucene>
+        <version.hppc>0.7.1</version.hppc>
+        <version.apache.log>2.17.1</version.apache.log>
+        <version.joda>2.10.1</version.joda>
+        <version.jackson.core>2.8.11</version.jackson.core>
+        <version.commons.logging>1.2</version.commons.logging>
+        <version.commons.codec>1.10</version.commons.codec>
+        <ericsson.scm.url>scm:git:ssh://gerrit.ericsson.se:29418/OSS/ENM-Parent/SQ-Gate/com.ericsson.oss.itpf.elasticsearch/elasticsearch-module</ericsson.scm.url>
+    </properties>
+
+    <dependencies>
+        <!-- The dependency is needed when "JSR-330: Dependency Injection" is used (e.g. @Inject, @Qualifier etc.) -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- The dependency is needed when CDI (Contexts and Dependency Injection) is used. -->
+        <dependency>
+            <groupId>javax.enterprise</groupId>
+            <artifactId>cdi-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependency for Bean validation -->
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependency for SLF4J logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Dependency for JUnit tests -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Dependency for mocking in Unit tests -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${version.mockito}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <module>ERICelasticsearchmodule_CXP9041714</module>
+        <module>elasticsearch-module-jar</module>
+    </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven
+                    build itself. -->
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[2.4,)</versionRange>
+                                        <goals>
+                                            <goal>analyze-dep-mgt</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-ear-plugin</artifactId>
+                                        <versionRange>[2.7,)</versionRange>
+                                        <goals>
+                                            <goal>generate-application-xml</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>com.ericsson.maven.plugins</groupId>
+                                        <artifactId>rstate-maven-plugin</artifactId>
+                                        <versionRange>[1.0,)</versionRange>
+                                        <goals>
+                                            <goal>rstate</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-enforcer-plugin</artifactId>
+                                        <versionRange>[1.1,)</versionRange>
+                                        <goals>
+                                            <goal>enforce</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.codehaus.mojo</groupId>
+                                        <artifactId>build-helper-maven-plugin</artifactId>
+                                        <versionRange>[1.7,)</versionRange>
+                                        <goals>
+                                            <goal>regex-property</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.jboss.as.plugins</groupId>
+                <artifactId>jboss-as-maven-plugin</artifactId>
+                <configuration>
+                    <filename>${project.parent.artifactId}.${project.packaging}</filename>
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <scm>
+        <developerConnection>${ericsson.scm.url}</developerConnection>
+        <connection>${ericsson.scm.url}</connection>
+      <tag>HEAD</tag>
+  </scm>
+</project>

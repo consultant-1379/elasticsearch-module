@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="com.ericsson.oss.services.elasticsearch" slot="main">
+
+    <resources>
+        <resource-root path="elasticsearch-6.8.4.jar" />
+        <resource-root path="elasticsearch-rest-high-level-client-6.8.4.jar"/>
+        <resource-root path="elasticsearch-x-content-6.8.4.jar" />
+        <resource-root path="elasticsearch-rest-client-6.8.4.jar" />
+        <resource-root path="lang-mustache-client-6.8.4.jar" />
+        <resource-root path="rank-eval-client-6.8.4.jar" />
+        <resource-root path="elasticsearch-core-6.8.4.jar" />
+        <resource-root path="httpclient-4.5.13.jar" />
+        <resource-root path="httpcore-4.4.14.jar" />
+        <resource-root path="commons-logging-1.2.jar" />
+        <resource-root path="commons-codec-1.10.jar" />
+        <resource-root path="httpasyncclient-4.1.4.jar" />
+        <resource-root path="httpcore-nio-4.4.14.jar" />
+        <resource-root path="log4j-api-2.17.1.jar" />
+        <resource-root path="log4j-core-2.17.1.jar" />
+        <resource-root path="jackson-core-2.8.11.jar"/>
+        <resource-root path="lucene-core-7.7.2.jar" />
+        <resource-root path="hppc-0.7.1.jar" />
+        <resource-root path="joda-time-2.10.1.jar" />
+    </resources>
+
+    <dependencies>
+        <module name="org.slf4j"/>
+        <module name="javax.resource.api"/>
+        <module name="javax.api"/>
+        <module name="javax.annotation.api"/>
+        <module name="javax.ejb.api"/>
+        <module name="javax.enterprise.api"/>
+        <module name="javax.inject.api"/>
+        <module name="javax.interceptor.api"/>
+        <module name="javax.validation.api"/>
+    </dependencies>
+
+</module>
